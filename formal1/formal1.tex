@@ -1,0 +1,194 @@
+\documentclass[a4paper,oneside, 11pt]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[cm-default]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xgreek}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{parallel,enumitem}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\setmainfont[Mapping=tex-text]{CMU Serif}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{mathtools, amsmath}
+\usepackage{amsfonts}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{titling}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+%    backgroundcolor=\color{backcolour},   
+%    commentstyle=\color{codegreen},
+%    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+%    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\makeatletter
+\def\maxwidth{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\makeatletter
+\newcommand\xlongleftrightarrow[2][]{%
+\ext@arrow 0059{\longleftrightarrowfill@}{#1}{#2}%
+}
+\def\longleftrightarrowfill@{%
+\arrowfill@ ← \relbar → }
+\makeatother
+
+
+
+
+\pretitle{%
+		\begin{center}
+		\LARGE
+		\includegraphics[height=7cm]{figures/pyrforos.png}\\[\bigskipamount]
+}
+\posttitle{\end{center}}
+\title{\textbf{}}
+\author{ Ιωάννης Δάρας (\texttt{03115018, el15018@central.ntua.gr, daras.giannhs@gmail.com}) \\
+}
+\date{}
+
+\newtheorem{theorem}{Θεώρημα}
+\begin{document}
+\maketitle
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+
+
+
+\section*{Άσκηση 1}
+\subsection{}
+$$
+E[X_t] = E[Asin(\omega t + \Theta)] = E[A] \cdot E[sin(\omega t + \Theta)]
+$$
+Στην παραπάνω παράσταση χρησιμοποιήσαμε το εξής θεώρημα:
+\begin{theorem}
+	Αν δύο τυχαίες μεταβλητές X, Y είναι ανεξάρτητες, τότε $E[XY] = E[X] E[Y]$
+\end{theorem}
+$$
+E[X_t] = \frac{1}{\lambda}E[sin(\omega t + \Theta)] = E[sin(\omega t + \Theta)]
+$$
+$$
+E[X_t] = \int_{-\infty}^{\infty} sin(\omega t + \theta) f_{\Theta}(\theta) \textrm{d}\theta = \int_{0}^{2\pi} sin(\omega t + \theta) \frac{1}{2\pi}\textrm{d}\theta = 0$$
+\subsection{}
+$$
+E[X_t \cdot X_s] = E[A^2 \cdot sin(\omega t + \Theta) \cdot sin(\omega s + \Theta)] 
+= E[A^2] \cdot E[sin(\omega t + \Theta) \cdot sin(\omega s + \Theta)]$$
+Στην παραπάνω παράσταση χρησιμοποιήσαμε το Θεώρημα 1 και το Θεώρημα 2 που παραθέτουμε παρακάτω.
+\begin{theorem}
+	Αν δύο τυχαίες μεταβλητές $X, Y$ είναι ανεξάρτητες τότε και $g(X), f(Y)$ ανεξάρτητες όπου $g, f$ οποιεσδήποτε συναρτήσεις.
+\end{theorem}
+
+Τα θεωρήματα 1, 2 είναι γνωστά από το μάθημα των Πιθανοτήτων και συνεπώς η απόδειξη τους παραλείπεται.
+Έχουμε:
+$$
+V(A) = E[A^2] - E[A]^2
+$$
+Όμως: $A \sim Exp(\lambda)$ για την οποία γνωρίζουμε ότι: $$V[A]=\frac{1}{\lambda^2}$$
+$$
+E[A] = \frac{1}{\lambda}
+$$
+Άρα:
+$$
+E[A^2] = \frac{2}{\lambda^2}
+$$
+Έτσι, έχουμε:
+$$
+E[X_t\cdot X_s] = E[sin(\omega t + \Theta) \cdot sin(\omega s + \Theta)] \cdot \frac{2}{\lambda^2} = \frac{1}{\lambda^2} E[cos(\omega (t-s)) - cos(\omega (t+s) + 2\Theta)]
+$$
+$$
+E[X_t\cdot X_s] = cos(\omega (t-s)) - E[cos(\omega (t+s) + 2\Theta)]
+$$
+Στην παραπάνω παράσταση ο δεύτερος όρος μηδενίζεται με πανομοιότυπο με εκείνον που ακολουθήσαμε στο ερώτημα 1.1. Έτσι, προκύπτει τελικά ότι:
+$$
+E[X_t \cdot X_s] = cos\big( \omega (t-s)\big)
+$$
+
+
+
+\section*{Άσκηση 5}
+Η άσκηση αυτή αναλύθηκε στην 1η εργαστηριακή άσκηση. Μεταφέρουμε τον πίνακα πιθανοτήτων μετάβασης από την άσκηση αυτή:
+$$P = \begin{bmatrix}0 & 0.5 & 0.5 & 0 & 0  \\ 0.5 & 0 & 0.5 & 0 & 0 \\ 0.25 & 0.25 & 0 & 0.25 & 0.25 \\ 0 & 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0 & 0\end{bmatrix}$$
+
+
+\section*{Άσκηση 7}
+\subsection{}
+Η κάθε κατάσταση κωδικοποιεί τον αριθμό των συνεχόμενων 6αριών που έχουμε φέρει. Έτσι, από μια κατάσταση με πιθανότητα $\frac{1}{6}$ πάμε στην επόμενη της (αν φέρουμε 6) ή με πιθανότητα $\frac{5}{6}$ (αν φέρουμε οτιδήποτε άλλο) γυρίζουμε στην κατάσταση 0. Η κατάσταση 5 μένει με πιθανότητα 1 στον εαυτό της, αφού το πείραμα έχει τελειώσει. Ο πίνακας πιθανοτήτων μετάβασης είναι:
+$$
+\mathcal{P} = \begin{bmatrix}
+5/6 & 1/6 & 0 & 0 & 0 & 0\\
+5/6 & 0 & 1/6 & 0 & 0 & 0 \\
+5/6 & 0 & 0 & 1/6 & 0 & 0 \\
+5/6 & 0 & 0 & 0 & 1/6 & 0 \\
+5/6 & 0 & 0 & 0 & 0 & 1/6 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+\subsection{}
+Σε αυτό το πείραμα, οι καταστάσεις $\mathbb X$ μοντελοποιούν τα ακόλουθα:
+\begin{itemize}
+	\item 0: κανένα στοιχείο της ζητούμενης ακολουθίας
+	\item 1: 6
+	\item 2: 65
+	\item 3: 656
+	\item 4: 6565
+	\item 5: 65656
+\end{itemize}
+
+
+$$\mathcal{P} = \begin{bmatrix}
+5/6 & 1/6 & 0 & 0 & 0 & 0\\
+4/6 & 1/6 & 1/6 & 0 & 0 & 0 \\
+5/6 & 0 & 0 & 1/6 & 0 & 0 \\
+4/6 & 1/6 & 0 & 0 & 1/6 & 0 \\
+5/6 & 0 & 0 & 0 & 0 & 1/6 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+
+
+\section*{Άσκηση 12}
+Στο πείραμα αυτό κάθε κατάσταση του $\mathbb X$ μοντελοποιεί τον αριθμό των σωματιδίων που ανήκουν στη διαμέριση Α. Αφού σε κάθε βήμα η διαμέριση μπορεί να έχει είτε ένα σωματίδιο λιγότερο είτε ένα σωματίδιο περισσότερο, οι πιθανότητες μετάβασης σε μη γειτονικές καταστάσεις είναι 0. Αντίθετα, για τις γειτονικές καταστάσεις η πιθανότητα είναι $\frac{1}{2}$. Φυσικά, για την πρώτη και την τελευταία κατάσταση (0 σωματίδια ή N σωματίδια αντίστοιχα) με πιθανότητα $\frac{1}{2}$ μεταβαίνεις στη γειτονική τους κατάσταση και με $\frac{1}{2}$ μένεις στην ίδια. \bigbreak
+
+Συνοπτικά:
+$$
+p(i,j) = \begin{cases}
+1/2 & |j - i| = 1 \wedge i > 0 \wedge i < N \\
+1/2 & j = i = 0 \wedge i = j = N \\
+0 & \text{αλλού} 
+\end{cases}
+$$
+
+
+
+
+
+\section*{Βιβλιογραφία}
+[1] Λουλάκης, Μ., 2015. Στοχαστικές Διαδικασίες. [ηλεκτρ. βιβλ.] Αθήνα:Σύνδεσμος Ελληνικών Ακαδημαϊκών Βιβλιοθηκών
+
+\end{document}
