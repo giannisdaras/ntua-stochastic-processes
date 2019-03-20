@@ -1,0 +1,425 @@
+\documentclass[a4paper,oneside, 11pt]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[cm-default]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xgreek}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{parallel,enumitem}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\setmainfont[Mapping=tex-text]{CMU Serif}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{mathtools, amsmath, amsfonts}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{titling}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+%    backgroundcolor=\color{backcolour},   
+%    commentstyle=\color{codegreen},
+%    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+%    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\makeatletter
+\def\maxwidth{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\makeatletter
+\newcommand\xlongleftrightarrow[2][]{%
+\ext@arrow 0059{\longleftrightarrowfill@}{#1}{#2}%
+}
+\def\longleftrightarrowfill@{%
+\arrowfill@ ← \relbar → }
+\makeatother
+
+
+
+
+\pretitle{%
+		\begin{center}
+		\LARGE
+		\includegraphics[height=7cm]{figures/pyrforos.png}\\[\bigskipamount]
+}
+\posttitle{\end{center}}
+\title{\textbf{Στοχαστικές Διαδικασίες \\ 2η Σειρά Γραπτών Ασκήσεων}}
+\author{ Ιωάννης Δάρας (\texttt{03115018, el15018@central.ntua.gr, daras.giannhs@gmail.com}) \\
+}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\maketitle
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+
+\section*{Άσκηση 20}
+Η ζητούμενη πιθανότητα είναι η $\pi_n(1)$.
+
+
+Γνωρίζουμε ότι:
+$$
+\pi_n =  \pi_0 P^n
+$$
+Στο πρόβλημα μας, ξεκινάμε από την κατάσταση $X_0=1$, συνεπώς:
+$$
+\pi_0 = \begin{bmatrix}
+1 & 0 & 0
+\end{bmatrix}
+$$
+
+Προκειμένου να υπολογίσουμε τον πίνακα $P^n$ πρέπει να διαγωνοποιήσουμε τον πίνακα P, δηλαδή να τον γράψουμε στην μορφή:
+$$
+P = S \cdot \Lambda \cdot S^{-1}
+$$ 
+
+ Προκειμένου να τον διαγωνοποιήσουμε, πρέπει πρώτα να βρούμε τις ιδιοτιμές του.
+Έχουμε:
+$$
+P = \begin{bmatrix}
+0 & 1/2 & 1/2 \\
+1/3 & 1/3 & 1/3 \\
+p & 2/3 - p & 1/3
+\end{bmatrix}
+$$
+
+$$
+|P - \lambda I| = 0 \iff 
+$$
+
+
+$$
+\begin{vmatrix}
+-\lambda & 1/2 & 1/2 \\ 
+1/3 & 1/3 - \lambda & 1/3 \\
+p & 2/3 - p & 1/3 - \lambda 
+\end{vmatrix} = 0 \iff 
+$$
+$$
+-\lambda \begin{vmatrix} 1/3 - \lambda &  1/3 \\ 2/3 - p & 1/3 - \lambda \end{vmatrix} - 1/2 \begin{vmatrix} 1/3 & 1/3 \\ p & 1/3 -\lambda \end{vmatrix} + 1/2 \begin{vmatrix}
+1/3 & 1/3 -\lambda \\ p & 2/3 -p \end{vmatrix} = 0 \iff 
+$$
+$$
+-18\lambda ^ 3 + 12\lambda^2 + 3\lambda p - 3p + 5\lambda + 1 =0
+$$
+Παρατηρούμε ότι το 1 είναι ρίζα της παραπάνω εξίσωσης.
+Άρα γράφεται ισοδύναμα:
+$$
+(\lambda - 1) \cdot (-18\lambda^2 - 6\lambda -1 + 3p) = 0 \qquad (1)
+$$
+\subsection*{(α)}
+Για p = 0 η (1) γράφεται:
+$$
+(\lambda - 1) \cdot (-18\lambda^2 - 6\lambda -1 ) = 0
+$$
+Από την παραπάνω εξίσωση προκύπτουν οι ιδιοτιμές:
+$$
+\lambda_1 = -\frac{1}{6} - \frac{1}{6}j, \quad \lambda_2 = -\frac{1}{6} + \frac{1}{6}j, \quad \lambda_3 = 1
+$$
+Ο πίνακας ιδιοτιμών είναι λοιπών:
+$$
+\Lambda = \begin{bmatrix}
+-1/6 -1/6j & 0 & 0 \\
+0 & -1/6 +1/6j & 0 \\
+0 & 0 & 1 
+\end{bmatrix}
+$$
+
+Για να βρούμε τα ιδιοδιανύσματα λύνουμε την εξίσωση:
+$$
+(P - \lambda_i I)\cdot v_i = \vec 0
+$$
+για τα διάφορα $\lambda_i$ που βρήκαμε. \bigbreak 
+
+Έτσι, προκύπτουν τα ιδιοδιανύσματα:
+$$
+v_1 = \begin{bmatrix}
+0.507j & -0.507j & 0.577
+\end{bmatrix}, \quad
+v_2 = \begin{bmatrix}
+	0.507 - 0.17j & 0.507 + 0.17j & 0.577
+\end{bmatrix}, \quad 
+v_3 = \begin{bmatrix}
+	-0.676 & -0.676 & 0.577
+\end{bmatrix}
+$$
+Ο πίνακας S γράφεται:
+$$
+S = \begin{bmatrix}
+0.507j & -0.507j & 0.577 \\
+0.507 - 0.17j & 0.507 + 0.17j & 0.577 \\ 
+-0.676 & -0.676 & 0.577
+\end{bmatrix}
+$$
+Ο αντίστροφος πίνακας $S^{-1}$ μπορεί να βρεθεί με τη μέθοδο των υποοριζουσών και είναι:
+$$
+S^{-1} = \begin{bmatrix}
+0.118 - 0.828j & 0.354 + 0.473j & -0.473 + 0.355j \\
+0.118 + 0.828j & 0.354 - 0.473j & -0.473 - 0.355j \\
+0.277 & 0.831 & 0.623
+\end{bmatrix}
+$$
+Έτσι, τελικά έχουμε:
+$$
+P = S \cdot \Lambda \cdot S^{-1} = 
+$$
+$$
+= \footnotesize{\begin{bmatrix}
+0.507j & -0.507j & 0.577 \\
+0.507 - 0.17j & 0.507 + 0.17j & 0.577 \\ 
+-0.676 & -0.676 & 0.577
+\end{bmatrix} \cdot \begin{bmatrix}
+-1/6 -1/6j & 0 & 0 \\
+0 & -1/6 +1/6j & 0 \\
+0 & 0 & 1 
+\end{bmatrix} \cdot \begin{bmatrix}
+0.118 - 0.828j & 0.354 + 0.473j & -0.473 + 0.355j \\
+0.118 + 0.828j & 0.354 - 0.473j & -0.473 - 0.355j \\
+0.277 & 0.831 & 0.623
+\end{bmatrix}}
+$$
+
+
+Όμως:
+$$
+P_n = S \cdot \Lambda^n \cdot S^{-1}
+$$
+που πλέον ο διαγώνιος πίνακας υψώνεται εύκολα στη δύναμη n αφού για να γίνει αυτό αρκεί να υψωθούν τα στοιχεία της διαγωνίου στη δύναμη αυτή.
+
+
+
+
+\subsection*{(β)}
+Για p=1/6 από την (1) παίρνουμε τις ακόλουθες ιδιοτιμές:
+$$
+\lambda_1 = \lambda_2 = -\frac{1}{6}  \textrm{ (διπλή)}, \quad \lambda_3 = 1
+$$
+
+Για τα ιδιοδιανύσματα $\lambda_1, \lambda_3$ αρκεί να λύσω την εξίσωση:
+$$
+(P - \lambda_i I)\cdot v_i = \vec 0
+$$
+
+Το $v_2$ είναι γενικευμένο ιδιοδιάνυσμα καθώς προκύπτει από διπλή ιδιοτιμή. Έτσι, λύνουμε την εξίσωση:
+$$
+(P - \lambda_2 I)\cdot v_2 = v_1 
+$$
+Κατά τα άλλα δουλεύουμε ακριβώς όπως παραπάνω.
+\subsection*{(γ)}
+Για p=2/3 από την (1) παίρνουμε τις ακόλουθες ιδιοτιμές:
+$$
+\lambda_1 = 0, \quad \lambda_2 = -1/6 \cdot (1 - \sqrt3), \lambda_3 = -1/6 \cdot (1 + \sqrt3)
+$$
+
+Αφου όλες οι ιδιοτιμές έχουν πολλαπλότητα 1, τα ιδιοδιανύσματα βρίσκονται ακριβώς όπως έχουμε ήδη δει, λύνοντας δηλαδή την εξίσωση:
+$$
+(P - \lambda_i I)\cdot v_i = \vec 0
+$$
+
+
+\subsection*{(δ)}
+Ο υπολογισμός του $\lim_{n\to \infty}P^n$ γίνεται αποδοτικά μέσω της διαγωνοποίησης, δηλαδή:
+
+$$ \lim_{n\to \infty}P^n = S \left( \lim_{n \to \infty}\Lambda ^ n \right) S^{-1} $$
+
+
+\section*{Άσκηση 21}
+\subsection{(α)}
+Έχουμε:
+$$
+P = \begin{bmatrix}
+0 & 1/6 & 1/12 & 3/4 \\
+1/2 & 0 & 1/4 & 1/4 \\
+0 & 1/2 & 0 & 1/2 \\
+1/2 & 1/3 & 1/6 & 0
+\end{bmatrix}
+$$
+
+
+Θέλουμε να δείξουμε για μεγάλο n υπάρχει ανεξαρτησία της $\pi_n$ ως προς την αρχική κατανομή. Για να το κάνουμε αυτό, πρέπει να υπολογίσουμε τον πίνακα $P^n$, που σημαίνει ότι αρχικά πρέπει να τον διαγωνοποιήσουμε. \bigbreak 
+
+Αρχικά, βρίσκουμε τις ιδιοτιμές του πίνακα λύνοντας την εξίσωση:
+$$
+|P - \lambda I| = 0
+$$ 
+Από την παραπάνω εξίσωση παίρνουμε:
+$$
+\lambda_1 = 1, \quad \lambda_2 = \lambda_3 = -0.5 \textrm{ (διπλή)}, \quad \lambda_4 = 0 
+$$
+Για να βρούμε τα ιδιοδιανύσματα $v_1, v_2, v_4$ χρησιμοποιούμε την εξίσωση:
+$$
+(P - \lambda_i I)\cdot v_i = \vec 0
+$$
+Επειδή το ιδιοδιάνυσμα $v_3$ είναι το δεύτερο ιδιοδιάνυσμα διπλής ιδιοτιμής, είναι γενικευμένο ιδιοδιάνυσμα και προκύπτει από την εξίσωση:
+$$
+(P - \lambda_3 I)\cdot v_3 = v_2
+$$
+
+
+Από τα παραπάνω έχουμε ότι ο πίνακας των ιδιοτιμών είναι ένας πίνακας Jordan (λόγω της διπλής ιδιοτιμής) και έχει τις τιμές που φαίνονται παρακάτω:
+$$
+J = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & -0.5 & 1 & 0 \\
+0 & 0 & -0.5 & 0 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix}
+$$
+
+Για έναν jordan πίνακα γνωρίζουμε ότι όταν τον υψώνουμε στη δύναμη n τότε το m-οστό στοιχείο μετρώντας από μια ιδιοτιμή $\lambda_i$ προς τα δεξιά είναι:
+$$
+\binom{n}{m} \lambda_i^{n-m}
+$$
+Έτσι, έχουμε:
+$$
+J^n = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & (-0.5)^n & n \cdot (-0.5)^{n-1} & 0 \\
+0 & 0 & (-0.5)^n & 0 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & (-0.5)^n & n \cdot (2)^{1-n} (-1)^{n+1} & 0 \\
+0 & 0 & (-0.5)^n & 0 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix}
+$$
+
+
+Όμως:
+$$
+P^n = S \cdot J^n \cdot S^{-1} = S \cdot \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & (-0.5)^n & n \cdot (2)^{1-n} (-1)^{n+1} & 0 \\
+0 & 0 & (-0.5)^n & 0 \\
+0 & 0 & 0 & 0 \\
+\end{bmatrix} \cdot S^{-1}
+$$
+
+
+Έτσι, προκύπτει ότι:
+$$
+\lim_{n\to \infty}P^n = S \cdot \begin{bmatrix}
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{bmatrix}\cdot S^{-1}
+$$
+
+
+Από τη μορφή του πίνακα εύκολα προκύπτει ότι τα διανύσματα $S, S^{-1}$ θα προσθέσουν μετατοπίσεις που θα είναι ανεξάρτητες από την αρχική θέση $\pi_0$, της οποίας η επίδραση θα σβήσει λόγω του πίνακα μηδενικής ισχύος $J^n$.
+
+Έτσι, έχουμε:
+$$
+\pi_n \to \pi_*
+$$
+
+
+
+
+
+\section*{Άσκηση 24}
+$$
+P = \begin{bmatrix}
+1/2 & 1/2 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1/4 & 3/4 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1/4 & 1/4 & 0 & 1/8 & 3/8 & 0 & 0 & 0 \\
+0 & 0 & 1/4 & 0 & 3/4 & 0 & 0 & 0 \\
+0 & 0 & 1/5 & 1/5 & 1/5 & 1/5 & 1/5 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1/2 & 1/2 \\
+0 & 0 & 0 & 0 & 0 & 1/2 & 0 & 1/2 \\
+0 & 0 & 0 & 0 & 0 & 1/2 & 1/2 & 0 
+\end{bmatrix}
+$$
+
+
+\subsection*{Κλάσεις επικοινωνίας}
+Οι κλάσεις επικοινωνίας της στοχαστικής αυτής ανέλιξης είναι:
+$$
+\mathcal C_1 = \{1, 2\}, \quad \mathcal C_2 = \{3,4,5\}, \quad \mathcal C_3 = \{6,7,8\}
+$$
+
+Η κλάση $\mathcal C_{1}$ είναι κλειστή καθώς όλες οι πιθανότητες μετάβασης προς κάποιο στοιχείο εκτός της κλάσης είναι 0. Το ίδιο ισχύει και για την κλάση $\mathcal C_3$. Η κλάση $\mathcal C_2$ είναι ανοικτή καθώς η κατάσταση 3 έχει θετική πιθανότητα μετάβασης προς την κατάσταση 1 και η κατάσταση 1 ανήκει σε κλειστή κλάση. 
+
+\subsection*{Επαναληπτικότητα}
+Αφού οι καταστάσεις 1,2,6,7,8 ανήκουν σε κλειστές κλάσεις επικοινωνίας, από το θεώρημα 6, είναι επαναληπτικές καταστάσεις. 
+
+Οι καταστάσεις 3,4,5 ανήκουν σε ανοικτή κλάση επικοινωνίας, συνεπώς, από το θεώρημα 5, είναι παροδικές.
+
+
+\section*{Άσκηση 27}
+$$
+T = \mathrm{inf}(k \geq 5: X_k = X_2)
+$$
+Έχουμε:
+$$
+\{ T = n \} = \begin{cases}
+0, \qquad n<5 \\
+X_5 = X_2, \qquad n = 5 \\
+(X_5 \neq X_2) \wedge ... \wedge (X_{n-1} \neq X_2) \wedge (X_n = X_2)
+\end{cases}
+$$
+\bigbreak 
+
+Οι πρώτοι δύο κλάδοι ανήκουν στην $\mathcal F_n$ με προφανή τρόπο. Ο τρίτος κλάδος ανήκει στην $\mathcal F_n$ ως τομή πραγμάτων που ανήκουν στην $F_n$ σύμφωνα με την πρόταση 4 του βιβλίου. \bigbreak 
+
+Άρα:
+$$
+\{ T = n \} \in \mathcal F_n
+$$
+άρα ο χρόνος T είναι χρόνος διακοπής.
+
+\section*{Άσκηση 29}
+Έστω $\{X_n\}_{n \in \mathbb N_o}$ για την οποία το στοιχείο i,j του πίνακα πιθανοτήτων μετάβασης της δίνεται από τη σχέση:
+$$
+p[i,j] =  \begin{cases}
+0.5, \qquad j=i+1 \\ 0.5, \qquad j=i+2 \\ 
+0, \qquad \textrm{αλλιώς}
+\end{cases}
+$$
+Αυτή η στοχαστική διαδικασία μοντελοποιεί το πείραμα του να "περπατάμε" στους φυσικούς αριθμούς ρίχνοντας κάθε φορά ένα τίμιο κέρμα για το αν θα πάμε στον επόμενο ή στο μεθεπόμενο αριθμό. \bigbreak 
+
+Σε αυτή τη στοχαστική διαδικασία κάθε αριθμός είναι μια κλάση επικοινωνίας και προφανώς η στοχαστική διαδικασία έχει μόνο ανοικτές κλάσεις επικοινωνίας αφού δεν μπορούμε να ξαναγυρίσουμε σε έναν αριθμό.
+
+
+\section*{Άσκηση 32}
+Έστω ότι:
+$$
+P_1[T_0 < \infty] =  a
+$$
+Η πιθανότητα αυτή εκφράζει τη βεβαιότητα μας για το αν θα φτάσουμε στο 0 σε πεπερασμένο χρόνο ξεκινώντας από το 1.
+Όμως αντίστοιχα, η πιθανότητα να φτάσουμε στο 1 σε πεπερασμένο χρόνο ξεκινώντας από το 2 είναι η ίδια, από την ισχυρή μαρκοβιανή ιδιότητα, δηλαδή:
+$$
+P_2[T_1 < \infty] = a
+$$
+Από κανόνα γινομένου όμως έχουμε ότι:
+$$
+P_x[T_o < \infty] = P_{x-1}[T_x < \infty] \cdot P_{x-2}[T_{x-1} < \infty] \cdot ... \cdot P_1[T_o<\infty] = a \cdot a \cdot ... \cdot a = a^x
+$$
+δηλαδή δείξαμε το ζητούμενο.
+\end{document}
