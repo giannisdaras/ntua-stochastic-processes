@@ -1,0 +1,523 @@
+\documentclass[a4paper,oneside, 11pt]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[cm-default]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xgreek}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{parallel,enumitem}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\setmainfont[Mapping=tex-text]{CMU Serif}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{mathtools, amsmath, amsfonts}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{algorithm2e}
+\usepackage{titling}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+%    backgroundcolor=\color{backcolour},   
+%    commentstyle=\color{codegreen},
+%    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+%    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\makeatletter
+\def\maxwidth{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\makeatletter
+\newcommand\xlongleftrightarrow[2][]{%
+\ext@arrow 0059{\longleftrightarrowfill@}{#1}{#2}%
+}
+\def\longleftrightarrowfill@{%
+\arrowfill@ ← \relbar → }
+\makeatother
+
+
+
+
+\pretitle{%
+		\begin{center}
+		\LARGE
+		\includegraphics[height=7cm]{figures/pyrforos.png}\\[\bigskipamount]
+}
+\posttitle{\end{center}}
+\title{\textbf{Στοχαστικές Διαδικασίες \\ 3η Γραπτή Σειρά Ασκήσεων}}
+\author{ Ιωάννης Δάρας (\texttt{03115018, el15018@central.ntua.gr, daras.giannhs@gmail.com}) \\
+}
+\date{“So much of life, it seems to me, is determined by pure randomness.” \\ —Sidney Poitier}
+
+\newtheorem{theorem}{Theorem}
+\begin{document}
+\maketitle
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+
+
+
+\section*{Άσκηση 42}
+\subsection*{(α)}
+Ο στοχαστικός πίνακας της διαδικασίας φαίνεται ακολούθως:
+$$
+P = \begin{bmatrix}
+1/2 & 1/2 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1/4 & 3/4 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1/4 & 1/4 & 0 & 1/8 & 3/8 & 0 & 0 & 0 \\
+0 & 0 & 1/4 & 0 & 3/4 & 0 & 0 & 0 \\
+0 & 0 & 1/5 & 1/5 & 1/5 & 1/5 & 1/5 & 0 \\
+0 & 0 & 0 & 0 & 0 & 0 & 1/2 & 1/2 \\
+0 & 0 & 0 & 0 & 0 & 1/2 & 0 & 1/2 \\
+0 & 0 & 0 & 0 & 0 & 1/2 & 1/2 & 0 
+\end{bmatrix}
+$$
+
+Ο χώρος καταστάσεων είναι $$\mathbb X = \{ 1,2,3,4,5,6,7,8 \}$$
+
+
+Στην άσκηση 24 διαπιστώσαμε ότι η στοχαστική αυτή διαδικασία διαμερίζεται στις κλάσεις επικοινωνίας $\mathcal C_1 = \{1,2\}, \mathcal C_2 = \{3,4,5\}, \mathcal C_3=\{6,7,8\}$, εκ των οποίων η $\mathcal C_1, C_3$ είναι κλειστές και η $\mathcal C_2$ είναι ανοικτή. \bigbreak
+
+Ορίζουμε τα σύνολα $$A = \{1,2\}, \quad B = \{ 6, 7, 8\}$$
+Ορίζουμε ακόμη τον χρόνο πρώτης άφιξης στα σύνολα A, B ως:
+$$
+T_A = \inf\{ k\geq 0: X_k \in A\}, \qquad T_B = \inf\{ k \geq 0: X_k \in B\}
+$$
+H πιθανότητα η διαδικασία να καταλήξει στην κλειστή κλάση A ξεκινώντας από μια κατάσταση x είναι:
+$$
+P[T_A < \infty | X_0 = x] = P_x[T_A < \infty] = \Phi_A(x)
+$$
+
+Για την $\Phi_A(x)$, από το Πόρισμα 3, έχουμε:
+$$
+\Phi_A(x) =  \begin{cases}
+1, \quad x \in A \\
+0, \quad x \in B \\
+\sum_{y} p(x,y) \Phi_A(y), \quad x \not\in A \cup B
+\end{cases}
+$$
+
+\underline{Σημαντική σημείωση:} Ο δεύτερος κλάδος της $\Phi_A(x)$ μπορεί να υπολογιστεί από τον τρίτο, όπως ακριβώς περιγράφεται στο Πόρισμα 3, αφήνοντας το $x \in B$. Όμως, αναμένουμε τα $\Phi_A(x) = 0, \forall x \in B$ καθώς η κλάση Β είναι μια ξεχωριστή κλειστή κλάση επικοινωνίας και συνεπώς μπορούμε να γλυτώσουμε κάποιες πράξεις. 
+\bigbreak 
+
+
+Έτσι, προκύπτει το σύστημα:
+$$
+\begin{cases}
+\Phi_A(3) = 1/4 \Phi_A(1) + 1/4 \Phi_A(2) + 1/8 \Phi_A(4) + 3/8\Phi_A(5) \\
+\Phi_A(4) = 1/4 \Phi_A(3) + 3/4\Phi_A(5) \\
+\Phi_A(5) = 1/5\Phi_A(3) + 1/5 \Phi_A(4) + 1/5 \Phi_A(5) + 1/5\Phi_A(6) + 1/5\Phi_A(7)
+\end{cases}
+$$
+
+Όμως από τον ορισμό της $\Phi_A$ έχουμε ότι: $\Phi_A(1)=\Phi_A(2) = 1$ και $\Phi_A(6)=\Phi_A(7) = \Phi_A(8) = 0$
+οπότε και προκύπτει η λύση του συστήματος:
+$$
+\Phi_A(3) = 26/41 \approx 0.634 ,\quad \Phi_A(4)= 14/41 \approx 0.341 ,\quad \Phi_A(5) = 10/41  \approx 0.244
+$$
+
+\subsection*{(β)}
+Αντίστοιχα, η πιθανότητα να καταλήξει στην κλειστή κλάση B ξεκινώντας από μια κατάσταση x είναι:
+
+$$
+P[T_A < \infty | X_0 = x] = P_x[T_A < \infty] = \Phi_Β(x)
+$$
+
+Για την $\Phi_B(x)$ έχουμε:
+$$
+\Phi_B(x) =  \begin{cases}
+1, \quad x \in B \\
+0, \quad x \in A \\
+\sum_{y} p(x,y) \Phi_B(y), \quad x \not\in A \cup B
+\end{cases}
+$$
+
+
+$$
+\begin{cases}
+\Phi_B(3) = 1/4 \Phi_B(1) + 1/4 \Phi_B(2) + 1/8 \Phi_B(4) + 3/8\Phi_B(5) \\
+\Phi_B(4) = 1/4 \Phi_B(3) + 3/4\Phi_B(5) \\
+\Phi_B(5) = 1/5\Phi_B(3) + 1/5 \Phi_B(4) + 1/5 \Phi_B(5) + 1/5\Phi_B(6) + 1/5\Phi_B(7)
+\end{cases}
+$$
+
+Όμως από τον ορισμό της $\Phi_Β$ έχουμε ότι: $\Phi_Β(1)=\Phi_Β(2) = 0$ και $\Phi_Β(6)=\Phi_Β(7) = \Phi_Β(8) = 1$
+
+οπότε και προκύπτει η λύση του συστήματος:
+$$
+\Phi_Β(3) = 15/41 \approx 0.366, \quad \Phi_Β(4)= 27/41  \approx 0.658 ,\quad \Phi_Β(5) = 31/41  \approx 0.756
+$$
+\bigbreak 
+Παρατηρούμε ότι
+$$
+\Phi_A(x) + \Phi_B(x) = 1, \qquad \forall x \in \mathbb X
+$$ 
+
+Αυτό είναι αναμενόμενο από την κλειστότητα των κλάσεων καθώς αν φτάσεις σε μια κλειστή κλάση η πιθανότητα να δραπετεύσεις είναι 0 και άρα 0 ειναι και η πιθανότητα να φτάσεις σε μια άλλη κλειστή κλάση.
+\subsection*{(γ)}
+Έχουμε:
+$$
+P[T_A < \infty] = P_3[T_A < \infty] \cdot P[X_0 = 3]  + P_4[T_A < \infty]\cdot P[X_0 = 4] + P_5[T_A < \infty]\cdot P[X_0 = 5] \iff
+$$
+
+Αφού διαλέγει ισοπίθανα ανάμεσα στις καταστάσεις:
+$\{3, 4, 5\}$ έχουμε: $P[X_0 = 3] = P[X_0 = 4] = P[X_0 = 5] = 1/3$
+\bigbreak 
+Άρα:
+$$
+P[T_A < \infty] = 1/3 P_3[T_A < \infty]  + 1/3P_4[T_A < \infty] + 1/3P_5[T_A < \infty] \iff $$
+$$ P[T_A < \infty] = 1/3 \cdot \left( \Phi_A(3) + \Phi_A(4) + \Phi_A(5) \right) \approx 0.406 
+$$
+
+\subsection*{(δ)}
+Δουλεύουμε ακριβώς όπως παραπάνω.
+$$
+P[T_B < \infty] = P_3[T_B < \infty] \cdot P[X_0 = 3]  + P_4[T_B < \infty]\cdot P[X_0 = 4] + P_5[T_B < \infty]\cdot P[X_0 = 5]
+$$
+Αφού διαλέγει ισοπίθανα ανάμεσα στις καταστάσεις 
+$\{3, 4, 5\}$ έχουμε: $P[X_0 = 3] = P[X_0 = 4] = P[X_0 = 5] = 1/3$
+\bigbreak 
+Άρα:
+$$
+P[T_B < \infty] = 1/3 P_3[T_B < \infty]  + 1/3P_4[T_B < \infty] + 1/3P_5[T_B < \infty] \iff 
+$$
+$$
+P[T_B < \infty] = 1/3 \left( \Phi_B(3) + \Phi_B(4) + \Phi_B(5) \right) \approx 0.5853
+$$
+
+\subsection*{(ε)}
+
+Μέχρι στιγμής, έχουμε υπολογίσει το:
+$$
+\Phi_A(x) = P_x[T_A < \infty]
+$$
+Όμως, αφού αν μπείς στην κλάση Α δεν μπορείς να πάς στην κλάση Β και αντίστοιχα αν μπεις στην κλάση Β δεν μπορείς να μπείς στην κλάση Α, έχουμε ότι:
+$$
+\Phi_A(x) = P_x[T_A < \infty] = P_x[T_A < T_B] = \Phi_{A, B}(x)
+$$
+Επίσης, αν φτάσεις μέσα σε μια πεπερασμένη κλειστή κλάση, η πιθανότητα να επισκεφθείς μια κατάσταση της είναι 1 όπως είδαμε σε προήγουμενο κεφάλαιο.
+Άρα:
+$$
+P_x[ \quad \inf\{k\geq 0: X_k=1\} < \quad \inf\{k \geq 0: X_k=8\}] = P_x[T_A < T_B] = \Phi_{A, B}(x) = \Phi_A(x)
+$$
+Άρα, η ζητούμενη πιθανότητα είναι αυτή που υπολογίσαμε στο υποερώτημα (γ), δηλαδή:
+$$
+P_x[ \quad \inf\{k\geq 0: X_k=1\} < \quad \inf\{k \geq 0: X_k=8\}] = 0.406
+$$
+\section*{Άσκηση 44}
+Ο στοχαστικός πίνακας είναι ο ακόλουθος:
+$$
+P = \begin{bmatrix}
+1 & 0 & 0 & 0 & 0 \\
+p & 0 & 1-p & 0 & 0 \\
+0 & 1-p & 0 & p & 0 \\
+0 & 0 & p & 0 & 1-p \\
+0 & 0 & 0 & 0 & 1
+\end{bmatrix}
+$$
+Ο χώρος καταστάσεων είναι:
+$$
+\mathbb X = \{ s_1, s_2, s_3, s_4, s_5 \}
+$$
+Παρατηρούμε ότι υπάρχουν 3 κλάσεις επικοινωνίας: $\mathcal C_1 = \{s_1\}, \mathcal C_2 \{ s_2, s_3, s_4\}, \mathcal C_3 = \{s_5\}$
+
+Οι κλάσεις $\mathcal C_1, C_3$ είναι κλειστές ενώ η κλάση $\mathcal C_2$ είναι ανοικτή.
+
+\subsection*{(α)}
+
+Ορίζουμε τα σύνολα:
+$$
+A = \{1\}, \quad B = \{5\}
+$$
+Αντίστοιχα, ορίζουμε τους χρόνους άφιξης στα Α, Β:
+$$
+T_A = \inf\{k \geq 0: X_k = 1\}, \quad T_B = \inf\{k \geq 0: X_k = 5\}
+$$
+Έχουμε:
+$$
+P_x [T_A < T_B] = P[T_A < T_B | X_0 = x] = \Phi_{A, B}(x)
+$$
+Η $\Phi_{A,B}$ ικανοποιεί το πρόβλημα συνοριακών τιμών:
+$$
+\begin{cases}
+h(x)= 1, \quad x\in A\\
+h(x) = 0, \quad x \in B \\
+\mathcal L h(x) = 0, \quad \forall x \not\in A \cup B
+\end{cases}
+$$
+Έτσι, προκύπτει:
+$$
+\begin{cases}
+h(1) = h(5) = 0\\
+h(2) = h(1)\cdot p + h(3) \cdot (1-p) \\
+h(3) = h(2)\cdot (1-p) + h(4)\cdot p \\
+h(4) = h(3)\cdot p + h(5)\cdot (1-p)
+\end{cases} \iff
+$$
+$$
+\begin{cases}
+h(2) = p + h(3) (1-p),\qquad (1) \\
+h(3) = h(2)\cdot (1-p) + h(4)\cdot p,\qquad (2) \\
+h(4) = h(3)\cdot p, \qquad (3)
+\end{cases}
+$$
+Από την (3) στην (2):
+$$
+h(3) = h(2)\cdot (1-p) + h(3)\cdot p^2 \iff 
+$$
+$$
+h(2) = \frac{h(3) \cdot (1-p^2)}{1-p} = h(3)\cdot (1+p), \qquad (4)
+$$
+Από την (4) στην (1):
+$$
+h(3)\cdot (1+p) = p + h(3)(1-p) \iff
+$$
+$$
+h(3) (1 +p -1 + p) = p \iff
+$$
+$$
+h(3) = \frac{1}{2}
+$$
+Έτσι, από τις (4), (3) προκύπτει:
+$$
+h(2) = \frac{1+p}{2}, \qquad h(4) = \frac{p}{2}
+$$
+
+Η ζητούμενη πιθανότητα είναι:
+$$
+P[T_1 < T_5 | X_0 = s_3] = P_{s_3}[T_A < T_B] = \Phi_{A, B}(s_3) = h(3) = \frac{1}{2}
+$$
+
+\subsection*{(β)}
+
+Ο αλγόριθμος φαίνεται ακολούθως:
+
+\begin{algorithm}[H]
+	\SetAlgoLined
+	\KwResult{0,1 depending on the fair coin simulation}
+	$\textrm{state} \gets s_3$\;
+	\While{state $\not\in s_1, s_5$ }{
+		$\textrm{state} \gets move\_state(\textrm{state}, \textrm{unfair\_coin})$\;
+	}
+	\eIf{state == $s_1$}{
+		\Return 0
+	}
+	{
+		\Return 1
+	}
+	\caption{Fair coin simulation with unfair coin}
+\end{algorithm}
+
+Η επεξήγηση του είναι απλή: ξεκινάμε από το state $s_3$ της στοχαστικής διαδικασίας του (α) και όταν το άτιμο νόμισμα φέρει κορώνα πάμε στο state που μας πάει ο στοχαστικός πίνακας από την τρέχουσα κατάσταση με πιθανότητα $p$ ενώ όταν φέρει γράμματα στο state που μας πάει ο στοχαστικός πίνακας από την τρέχουσα κατάσταση με πιθανότητα $1-p$. Γνωρίζουμε ότι οι ανοικτές κλάσεις είναι παρωδικές, δηλαδή ο αλγόριθμος με πιθανότητα 1 θα πάει τελικά σε κάποια τελική κατάσταση. Ακόμη, γνωρίζουμε ότι αυτή η διαδικασία προσομοιώνει τη ρίψη ενός τίμιου νομίσματος, αφού δείξαμε στο ερώτημα (α) ότι με πιθανότητα $\frac{1}{2}$ θα τερματίσει στην $s_3$, ενώ με πιθανότητα πάλι $\frac{1}{2}$ θα τερματίσει στην μοναδική άλλη κατάσταση που ανήκει σε κλειστή κλάση, στην $s_5$.
+
+\section*{Άσκηση 45}
+Αριθμούμε τις καταστάσεις όπως φαίνεται στο παρακάτω σχήμα.
+Έτσι, προκύπτει ότι:
+$$
+p(x, y) = \begin{cases}
+1, \quad x = 0, \quad y=1 \\
+0, \quad x = 0, \quad y \neq 1 \\
+1/3, \quad x \neq 0, \quad y = 2\cdot x \\
+1/3, \quad x \neq 0, \quad y= 2\cdot x + 1 \\
+1/3, \quad x \neq 0, \quad y = (x/2) \\
+0, \quad x \neq 0, \quad y \not \in \{2x, 2x+1, x/2\}
+\end{cases}
+$$
+Ορίζουμε το χρόνο πρώτης άφιξης στην κατάσταση $0$ ως εξής:
+$$
+T_0 = \inf \{ k\geq 0: X_k = 0\}
+$$
+Εμάς μας ενδιαφέρει η πιθανότητα:
+$$
+P_x[T_0 < \infty] = \Phi_0(x)
+$$
+Από το Πόρισμα 3, η $\Phi_0$ ικανοποιεί το πρόβλημα συνοριακών τιμών:
+$$
+\begin{cases}
+\Phi_0(0) = 1 \\
+L\Phi_0(x) = 0, \quad x \neq 0
+\end{cases}
+$$
+Έτσι, έχουμε ότι:
+$$
+\Phi_0(x) = 1/3 \cdot \big( \Phi_0(2x) + \Phi_0(2x + 1) + \Phi_0(x/2)\big), \quad x \neq 0
+$$
+Παρατηρούμε ότι το $\Phi_0(x) = c$ ικανοποιεί την παραπάνω αναδρομική σχέση.
+Επίσης:
+$$
+\Phi_0(1) = 1/3 \cdot (\Phi_0(2) + \Phi_0(3) + \Phi_0(0)) \iff
+$$
+$$
+c = 1/3 \cdot \big( c + c + 1 \big) \iff 
+$$
+$$
+c = 1
+$$
+Άρα:
+$$
+\Phi_0(x) = 1, \forall x \in \mathbb N
+$$
+Συνεπώς:
+$$
+P_x[T_0 < \infty] = P_1[T_0 < \infty] = P[T_0 < infty | X_0 = 1] = 1
+$$
+άρα ο περίπατος είναι \textbf{επαναληπτικός}.
+\section*{Άσκηση 52}
+\subsection*{Ορισμός Προβλήματος}
+\begingroup
+\begin{itemize}
+	\item  Έχουμε την μαρκοβιανή αλυσίδα $\{X_n\}$ στο $\mathbb{X = N}$ με πιθανότητες μετάβασης $p_{k,k-1} = \frac{1}{2} - \frac{1}{2k} $ και $p_{k,k+1} = \frac{1}{2} + \frac{1}{2k} $
+	\item Ορίζουμε το ενδεχόμενο πρώτου πέρσματος από την κατάσταση 1 ως εξής $T_1 = inf\{n \geq 0: X_n = 1\}$, ενώ αναζητούμε την πιθανότητα το να φτάσει η $\{ X_n\}$ στην κατάσταση k αφού πρώτα έχει περάσει από την κατάσταση 1 ή ισοδύναμα $\mathbb{P}_k[ T_1 < + \infty] = ?$
+	
+\end{itemize}
+\endgroup
+
+
+
+\subsection*{Επίλυση Προβλήματος}
+\begingroup
+\begin{itemize}
+	\item  Η ζητούμενη πιθανότητα $p(k) = \mathbb{P}_k[ T_1 < + \infty]$ ικανοποιεί το πρόβλημα συνοριακών τιμών: \\
+	$\begin{cases}
+	Lp(k) = 0, k \in \mathbb{Z} - \{1\} \\
+	p(1) = 1
+	\end{cases}$
+	$\Rightarrow$
+	$\begin{cases}
+	p(k) = \frac{k-1}{2k}p(k-1) + \frac{k+1}{2k}p(k+1) \\
+	p(1) = 1
+	\end{cases}$
+	
+	\item \textbf{1ος Τρόπος}
+	\begin{itemize}
+		\item Η τελευταία εξίσωση γράφεται ως \fbox{\begin{minipage}{16em} $p(k) - p(k+1) = \frac{k-1}{k+1}(p(k+1) - p(k))$ \end{minipage}} \textbf{(1.1)}
+		\item Εφαρμόζοντας διαδοχικά την τελευταία σχέση για k, k - 1, ..., 2 έχουμε $p(k) - p(k+1) = \frac{k-1}{k+1}\frac{k-2}{k}(p(k-2) - p(k-1))= ... = \frac{2}{k(k+1)}(p(1) - p(2))$
+		\item Αθροίζοντας τώρα τις παραπάνω σχέσεις για k = 1,...,m - 1τελικά λαμβάνουμε: \\ 
+		$p(1) - p(m) = 2(p(1) - p(2)) \sum_{k=1}^{m - 1}\frac{1}{k(k+1)} = 2(p(1) - p(2)) \sum_{k=1}^{m - 1}(\frac{1}{k} - \frac{1}{k+1} )$
+		\item Επομένως επειδή \\
+		\fbox{\begin{minipage}{4em} $p(1) = 1$\end{minipage}} έχουμε ότι \\ \\ 
+		$1 - p(m) = 2(1 - p(2)) \frac{m - 1}{m}$ (από υπολογισμό των παραπάνω αθροισμάτων), $\forall m \in \mathbb{N}$. \\ \\
+		Όμως αξίζει να σημειωθεί πως καθώς $\frac{m - 1}{m} \rightarrow 1$, οι λύσεις για να μην είναι αρνητικές θα πρέπει $\forall m \in \mathbb{N} $ να ισχύει ότι $2(1 - p(2)) \leq 1$ και κατ'επέκταση \fbox{\begin{minipage}{5em} $p(2) \geq 1/2$\end{minipage}}
+		\item Συκγεκριμένα η $p(k)$ ελαχιστοποιείται όταν $h(2) = 1/2$, άρα η σχέση μας λαμβάνει την εξής μορφή: \\
+		$p(k) = \mathbb{P}_k[ T_{1} < + \infty] = 1 - 2 ( 1 - \frac{1}{2})\frac{k-1}{k} \Rightarrow$ \fbox{\begin{minipage}{4em} $p(k) = \frac{1}{k}$\end{minipage}}. 
+	\end{itemize}
+	
+	
+	
+	\item \textbf{2ος Τρόπος}
+	\begin{itemize}
+		\item Λόγω μορφής της παραπάνω αναδρομικής σχέσης η επίλυσή περιγράφεται γραμμικά μέσω της σχέσης \fbox{\begin{minipage}{7em} $p(k) = a \frac{k - 1}{k} + b$ \end{minipage}} \textbf{(1.2)}
+		\item \textbf{Εύρεση του b}\\
+		\underline{Όμως} γνωρίζουμε ότι για $k = 1, p(1) = 1\Rightarrow a*0 + b = 1 \Rightarrow$ \fbox{\begin{minipage}{2.5em} $b = 1$\end{minipage}}. Επομένως προκύπτει $p(k) = a \frac{k - 1}{k} + 1$
+		\item  \textbf{Εύρεση του a}\\
+		Αν η στοχαστική διαδικασία ξεκινήσει από το $+ \infty$ (ή ισοδύναμα βρεθεί εκεί κάποια τιμή έστω n, και ορίζουμε την στοχαστική διαδικασία $\{Y_k\} = \{X_{k+n} \}$, η οποία επίσης θα είναι μαρκοβιανή αλυσίδα λόγω ισχύος της μαρκοβιανής ιδιότητας) τότε η πιθανότητα να βρεθεί στο 1 είναι ίση με 0 ή ισοδύναμα:\\ \\
+		$\mathbb{P}_k[ T_1 < + \infty] = 0 \Rightarrow lim_{k \rightarrow + \infty}(a \frac{k - 1}{k} + 1) = 0 \Rightarrow a + 1 = 0 \Rightarrow$ \fbox{\begin{minipage}{3.2em} $a = -1$\end{minipage}}
+		
+		\item Επομένως προκύπτει ότι $p(k) = (-1)\frac{k - 1}{k} + 1 = \frac{k - k + 1}{k} \Rightarrow$  \fbox{\begin{minipage}{4em} $p(k) = \frac{1}{k}$\end{minipage}}. 
+		
+	\end{itemize}
+	
+	
+	\textbf{Συμπερασματικά} παρατηρούμε ότι η $\{X_n\}$ διαφέρει από τον απλό συμμετρικό τυχαίο περίπατο σε αυτήν την ιδιότητα. Βλέπουμε δηλαδή ότι η $\{ X_n\}$ δεν φτάνει οπωσδήποτε στο 1. Πιο συγκεκριμένα, μπορούμε να δούμε ότι η κατάσταση 1 είναι \textbf{παροδική} εφόσον $p_{12} = 1$ και άρα εάν $Τ^{'}_{1} = inf\{k \geq 0: X_k = 1\}$ αποτελεί τον χρόνο επανόδου στο 1 τότε: \\ \\ 
+	$\mathbb{P}_1[ T_{1}^{'} < + \infty] = \mathbb{P}_2[ T_{2}^{'} < + \infty]  = \frac{1}{2} < 1$ \\ \\ 
+	Επομένως παρατηρούμε ότι όλο το $\mathbb{Ν}$ είναι μία κλάση επικοινωνίας και άρα όλες οι καταστάσεις είναι παροδικές. Για οποιοδήποτε $k \in \mathbb{N}$ η αλυσίδα με πιθανότητα 1, εκτελεί πεπερασμένου πλήθους επισκέψεις στο k. Εναλλακτικά αυτό σημαίνει ότι $\mathbb{P}[X_n \rightarrow \infty] = 1$
+\end{itemize}
+\endgroup
+
+
+\section*{Άσκηση 56}
+\subsection*{Ορισμός Προβλήματος}
+\begingroup
+\begin{itemize}
+	\item Γνωρίζουμε ότι $p(x,y) = \mathbb{P}[X_{n+1} = y | X_n = x, n < T_A < T_B] $. Μπορεί να υπολογιστεί από την δεσμευμένη κατανομή της τυχαίας μεταβλητής $X_{n+1}$ δοθέντων $X_n$ και των χρόνων αφίξεων στα σύνολα Α, Β ως $T_A$ και $T_B$.
+	\item Τόσο η πρώτη όσο και η δεύτερη πληροφορία αφορά τη δυναμική του συστήματος, την εξέλιξη του στον χρόνο, εφόσον ικανοποιείται η ανισοτική σχέση μεταξύ των χρόνων αφίξεων στα σύνολα Α,Β
+\end{itemize}
+\endgroup
+
+
+
+\subsection*{Επίλυση Προβλήματος}
+\begingroup
+\begin{itemize}
+	\item Σε αρχικό στάδιο, χωρίς βλάβη της γενικότητας γίνεται η υπόθεση ότι $ A \cap B = \emptyset $, με την έννοια της ανυπαρξίας κάποιας κατάστασης του συστήματος και στα δύο υπό εξέταση σύνολα αφίξεων. 
+	\item Στην περίπτωση αυτή η ζητούμενη πιθανότητα $\mathbb{P}[X_{n+1} = y | X_n = x, n < T_A < T_B] $ γράφεται ως εξής $p(x,y) = \mathbb{P}[X_{n+1} = y | X_n = x, 0 < T_A - n< T_B - n] $
+	\item Για διευκόλυνση του υπολογισμού, θέτουμε $T_A\sp{\prime} = T_A - n$ και $T_B\sp{\prime} = T_B - n$ επομένως αναζητούμε την πιθανότητα \fbox{\begin{minipage}{17.5em} $p(x,y) = \mathbb{P}[X_{n+1} = y | X_n = x,  T_A\sp{\prime} < T_B\sp{\prime}] $\end{minipage}}.   \footnote{Το 0 σαφώς παραλείπεται καθώς αναφερόμαστε σε θετικούς χρόνους αφίξεων}. Και προφανώς διακρίνουμε τις εξής περιπτώσεις, για την κατάσταση y.
+	\begin{enumerate}
+		\item Εάν $y \in A \cup B$ τότε γνωρίζουμε από \textit{Ισχυρή Μαρκοβιανή Ιδιότητα}: \\
+		$\mathbb{P}[T_A < T_B | X_0 = y] =  \text{Φ}_{Α,Β}(y) = 1 $. \\ \\
+		Επομένως \fbox{\begin{minipage}{11em} $\tilde{p}(x,y) = p(x,y)  \text{Φ}_{Α,Β}(y)$  \end{minipage}}
+		\item  Εάν $y \notin A \cup B$ τότε μπορούμε να θεωρήσουμε ότι ο δειγματικός χώρος Ω αποτελείται από  το ενδεχόμενο $\{T_A\sp{\prime} < T_B\sp{\prime} \}$, δηλαδή $\text{Ω} = \{T_A\sp{\prime} < T_B\sp{\prime} \}$ \\ \\
+		Σε αυτήν την περίπτωση διακρίνουμε τις εξής περιπτώσεις για την κατάσταση x, η οποία δεν είχε διαδραματίσει κάποιο ρόλο έως τώρα.
+		\begin{enumerate}
+			\item Εάν $x \in A \setminus B$, τότε η τομή των ενδεχομένων \\
+			$\mathbb{P}[X_{n+1} = y | X_n = x, n < T_A < T_B ]  \cap \mathbb{P}[ T_A < T_B | X_0 = x ]= \mathbb{P}[X_{n+1} = y | X_{n} = x]$, το οποίο ισχύει λόγω \textit{Ισχυρής Μαρκοβιανής Ιδιότητας}.\\ \\
+			Επομένως, και εφόσον $\mathbb{P}[X_{n+1} = y | X_{n} = x] = p(x,y)$, προκύπτει ότι \fbox{\begin{minipage}{11em} $\tilde{p}(x,y) = p(x,y)  \text{Φ}_{Α,Β}(x)$  \end{minipage}}
+			\item Εάν $x \in B \setminus A$, τότε με παρόμοια λογική διεκπεραίωση προκύπτει ότι  \fbox{\begin{minipage}{10.5em} $\tilde{p}(x,y) = p(x,y) \frac{\text{Φ}_{Α,Β}(y)}{\text{Φ}_{A,B}(x)}$  \end{minipage}}
+			
+		\end{enumerate}
+		
+		
+		
+		
+		
+	\end{enumerate}
+	Άρα σε κάθε περίπτωση ισχύει ότι \fbox{\begin{minipage}{10.5em} $\tilde{p}(x,y) = p(x,y) \frac{\text{Φ}_{Α,Β}(y)}{\text{Φ}_{A,B}(x)}$  \end{minipage}}
+	
+	
+\end{itemize}
+\endgroup
+
+
+
+\subsection*{Εφαρμογή}
+\begingroup
+\begin{itemize}
+	\item Ορίζουμε την στοχαστική διαδικασία $X_n\ $ = \{κέρματα της Αλίκης στο γύρο n\}
+	\item Ορίζουμε επίσης τις εξής πιθανότητες μετάβασης:
+	$\begin{cases}
+	p_{n,n-1} = p_{n, n+1} = \frac{1}{2} \\ 
+	p_{20,n} = 0 \\
+	p_{20,20} = 1 \\
+	p_{0,n} = 0 \\
+	p_{0,0} = 1\\
+	\end{cases}$
+	\item Βασιζόμενοι στην ανάλυση της πιθανότητας μετάβασης μιας αλυσίδας με δεσμεύσεις, θεωρούμε ως σύνολο Α το ενδεχόμενο της στοχαστικής διαδικασίας να βρεθεί στην κατάσταση 1, δηλαδή στο ενδεχόμενο που η Αλίκη διαθέτει 1 κέρμα. Αντίστοιχα για το σύνολο Β, που αφορά το ενδεχόμενο \textbf{τερματισμού}, δηλαδή η Αλίκης να διαθέτει 20 κέρματα. 'Αρα, $A = \{ X_k = 1\}$ και $Β = \{ X_k = 20\}$
+	\item Βάσει των προηγούμενων, προκύπτει το εξής \textit{Πρόβλημα Συνοριακών Τιμών}: \\ 
+	$\begin{cases}
+	h(n) = p_{n,n-1}h(n-1) + p_{n,n+1}h(n+1) = \frac{1}{2}( h(n-1) + h(n+1)) \\
+	h(1) = 1 \\
+	h(20) = 0\\
+	\end{cases}$
+	\item Όπως έχει ήδη αναλυθεί και στην \textbf{Άσκηση 52}, η επίλυση της συγκεκριμένης αναδρομής επιδέχεται γραμμική λύση της μορφής $h(n) = a + bn$. Έτσι λοιπόν βάσει συνοριακών τιμών προκύπτει ότι $a = \frac{20}{19}$ και $b = - \frac{1}{19}$. Eπομένως \fbox{\begin{minipage}{6.5em} $h(n) = \frac{20}{19} - \frac{n}{19}$\end{minipage}}
+	\item Στο σημείο αυτό αξίζει να αναφερθεί ότι η $h(n)$, αντιπροσωπεύει την συνάρτηση δυναμικού $\text{Φ}_{A,B}(n) $, δηλαδή την πιθανότητα -δεδομένου ότι η Αλίκη έχει στην κατοχή της αυτήν την στιγμή n κέρματα - να βρεθούμε πρώτα στο σύνολο Α, δηλαδή στο ενδεχόμενο που η Αλίκη έχει \textbf{1 κέρμα}, και μετ'επειτα στο σύνολο Β, δηλαδή στο ενδεχόμενο τερματισμού που η Αλίκη έχει στην κατοχή της \textbf{20 κέρματα} και έχει νικήσει το παιχνίδι.
+	\item Επομένως η δεσμευμένη πιθανότητα $\tilde{p}(x,y)$ που αναζητούμε βάσει της παραπάνω προϋπόθεσης είναι: \\
+	$\tilde{p}(n, n+1) = p(n,n+1) \frac{\text{Φ}_{Α,Β}(n+1)}{\text{Φ}_{A,B}(n)} \Rightarrow$ \fbox{\begin{minipage}{8.5em} $\tilde{p}(n, n+1) = \frac{1}{2} \frac{19 - n}{20 - n}$\end{minipage}}
+	
+	
+\end{itemize}
+\endgroup
+
+\end{document}
