@@ -110,4 +110,6 @@ venv.bak/
 *.out
 *.synctex.gz
 *.aux
+*.blg
+*.bbl
 
