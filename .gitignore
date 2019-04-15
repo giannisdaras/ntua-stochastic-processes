@@ -105,3 +105,9 @@ venv.bak/
 
 # lock files
 */.~lock*
+
+# tex files
+*.out
+*.synctex.gz
+*.aux
+
