@@ -1,0 +1,88 @@
+\documentclass[a4paper,oneside, 11pt]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage[cm-default]{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\usepackage{xgreek}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{parallel,enumitem}
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\setmainfont[Mapping=tex-text]{CMU Serif}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{mathtools, amsmath, amsfonts}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
+\usepackage{amsthm} % proofs
+\usepackage{float}
+\usepackage{caption}
+\usepackage{titling}
+
+
+\lstdefinestyle{mystyle}{
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+\makeatletter
+\def\maxwidth{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+
+\makeatletter
+\newcommand\xlongleftrightarrow[2][]{%
+\ext@arrow 0059{\longleftrightarrowfill@}{#1}{#2}%
+}
+\def\longleftrightarrowfill@{%
+\arrowfill@ ← \relbar → }
+\makeatother
+
+
+
+\IfFileExists{figures/pyrforos.png}{
+	\pretitle{%
+			\begin{center}
+			\LARGE
+			\includegraphics[height=7cm]{figures/pyrforos.png}\\[\bigskipamount]
+	}
+	\posttitle{\end{center}}
+}
+
+\title{\textbf{Στοχαστικές Διαδικασίες \\ Προσωπικές Σημειώσεις}}
+\author{ Ιωάννης Δάρας (\texttt{03115018, el15018@central.ntua.gr, daras.giannhs@gmail.com}) \\
+}
+\date{"It is often safer to be in chains than to be free." -- Franz Kafka}
+
+\newtheorem{theorem}{Θεώρημα}
+\newtheorem{definition}{Ορισμός}
+\renewcommand*{\proofname}{Απόδειξη}
+
+
+\begin{document}
+\maketitle
+\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+
+\section{Θεωρία δυναμικού}
+\subsection{Πιθανότητες απορρόφησης}
+\paragraph{Λυμμένες ασκήσεις:}
+
+\section{Martingales}
+
+\bibliography{citations.bib}
+\end{document}
